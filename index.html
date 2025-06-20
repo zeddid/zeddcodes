@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mahal mo pa ba? by: Zedd Did</title>
+  <!-- Fonts and Animation CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Your Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      <h1>Mahal mo pa rin ba siya?</h1>
+      <div class="choice">
+        <label class="option oo-option"><input type="radio" name="choose" value="Oo" /> <span>Oo</span></label>
+        <label class="option hindi-option"><input type="radio" name="choose" value="Hindi" /> <span>Hindi</span></label>
+      </div>
+
+      <div class="whatif">
+        <video id="myVideo" src="aray.mp4" muted playsinline></video>
+        <audio id="whatifAudio" src="what-if.mp3"></audio>
+      </div>
+
+      <div class="videos" id="videos">
+        <div class="for-image" id="no"></div>
+        <div class="background-music" id="music">
+          <audio id="bgMusic" controls autoplay loop>
+            <source src="yiee.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const ooInput = document.querySelector('input[value="Oo"]');
+      const hindiInput = document.querySelector('input[value="Hindi"]');
+      const videosContainer = document.querySelector(".videos");
+      const forImage = document.querySelector(".for-image");
+      const music = document.querySelector(".background-music");
+      const video = document.getElementById("myVideo");
+      const audio = document.getElementById("bgMusic");
+      const whatifAudio = document.getElementById("whatifAudio");
+      const videos = document.getElementById('videos');
+      const box = document.querySelector('.box');
+
+      ooInput.addEventListener("change", function () {
+        if (this.checked) {
+          box.classList.add('animate__animated', 'animate__pulse');
+          setTimeout(() => {
+            box.classList.remove('animate__animated', 'animate__pulse');
+          }, 1000);
+          
+          videosContainer.style.display = "grid";
+          forImage.style.display = "block";
+          music.style.display = "block";
+
+          video.style.display = "none";
+          video.pause();
+          whatifAudio.pause();
+
+          audio.play();
+        }
+      });
+
+      hindiInput.addEventListener("change", function () {
+        if (this.checked) {
+          box.classList.add('animate__animated', 'animate__headShake');
+          setTimeout(() => {
+            box.classList.remove('animate__animated', 'animate__headShake');
+          }, 1000);
+          
+          videosContainer.style.display = "none";
+          forImage.style.display = "none";
+          music.style.display = "none";
+          videos.style.display = "none"
+          audio.pause();
+
+          video.style.display = "block";
+          video.muted = true; 
+          video.play();
+
+          whatifAudio.play();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
